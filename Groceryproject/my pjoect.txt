@@ -1,0 +1,184 @@
+-------Grocery store management system-------
+
+
+simple Grocery Store Management application using the Tkinter library for the graphical user interface. This application allows users to sign up, 
+log in, manage stocks, and more. 
+
+Here's a brief overview of the main components and functionality in my code:
+
+1. You've defined a class `APP` that represents your application and initializes various GUI components.
+
+2. The `Signupframe` method sets up the sign-up frame with labels, entry fields, and buttons to create a new user account.
+
+3. The `loginframe` method sets up the login frame with labels, entry fields, and buttons to allow existing users to log in.
+
+4. The `data_base_connection` method establishes a connection to a MySQL database named "grocerystore" using the `mysql.connector` library.
+
+5. The `Dashboard_Frame` method creates a user dashboard with various options like viewing and managing stocks.
+
+6. The `Admin_page` method sets up an admin page with options to manage user accounts and view user details.
+
+7. The `insertData` method is used to insert user registration data into the database.
+
+8. The `change_to_login_frame` and `change_to_signupframe` methods allow switching between the login and sign-up frames.
+
+9. The `Back_to_login_frame` method takes the user back to the login frame from the dashboard.
+
+10. The `Validate_user_details` method checks user login credentials against the database and grants access to the dashboard upon successful login.
+
+11. The `view_stocks` method displays the available stock items in a Treeview widget, allowing users to filter by category.
+
+12. The `add_items` method opens a floating window for adding new stock items.
+
+13. The `addstock` method is used to handle category selection when adding a new stock item.
+
+14. The `add_stock` method inserts new stock item details into the database.
+
+15. The `update_stocks_Frame` method allows users to update and delete stock items.
+
+16. The `update_stock_filter` method filters stock items by category in the update stock frame.
+
+17. The `selected_item` method retrieves details of a selected stock item for editing.
+
+18. The `update_stock` method updates stock item details in the database.
+
+19. The `delete_stock` method deletes a selected stock item from the database.
+
+20. The `reset_details` method clears the input fields for updating or deleting stock items.
+
+21. The `Back_to_Dashboard1` method returns to the dashboard from the update/delete frame.
+
+22. The `help` method opens a help window providing developer information and a link to additional help.
+
+23. The `open_google_drive_link` method opens a web browser with a link to a Google Drive file.
+
+Finally, the main part of your code creates an instance of the `APP` class and starts the main application loop.
+
+Please note that you'll need to set up your MySQL database and customize the code further to meet your specific requirements.
+
+
+------Signup Frame containing-------
+
+*self.Label1 (img)
+*self.heading_label1---signup
+*self.Label3---username
+*self.Label4----password
+*self.Label5--Email
+*self.Label6----already have an account?
+
+*self.Entry1---username
+*self.Entry2---password
+*self.Entry3---Email
+
+self.Button1----Create an account--->Insert Dta ( data stored in backend)
+self.Button12----Login----------->Changeframe from signup to login frame--------- def change_to_Login_frame(self):
+
+----Login Frame containing----
+
+*self.Label2 (img)
+*self.heading_label2---logi
+*self.Label7---user_name
+*self.Label8---password
+*self.Label9----Don't have an account ?
+
+*self.Entry4---username
+*self.Entry5---password
+
+self.Button3----Login--->Main Page(Naviagate the user to his main dashboard page)---------def Validate_user_details(self):
+self.Button4----signup----------->Changeframe from login to signup frame again--------def change_to_signupframe(self):
+
+
+-----user Dashboard Frame-----------
+
+*self.Frame1-----Which containg all the below buttons
+
+self.Button5---view profile
+self.Button6---Edit profile
+self.Button7---Add stocks
+self.Button8---view stocks--->After clicking View stocks button it will navigate to another frame which display the stocks available.
+self.Button9---update stocks---->it will navigate to another frame where we can update and delete the stock details.
+self.Button10---help
+self.Button11---generate bill
+self.Button12---Logout ------------- '''Logout button will navigate the user to the LOGin page again'''---->Back_to_login_frame() 
+
+-------------Admin_dashboard--------
+
+--------Methods------
+
+1. def view_stocks(self)   will be called after clicking the "view stcock" button 
+
+*self.frame1---forget
+*self.frame2---pack which containing---->self.tree,self.combobox,self.btn
+
+self.tree---->showing available stocks in the table view
+self.combobox----> dropdown list for selecting categories
+self.btn---->to go back to dashboard page again--->it will call Back_to_Dashboard
+
+2.def viewstock:
+
+#Filtering the categories based on the selected list
+
+3.def change_to_login_frame(self):
+
+   This method will be called when clicking signup button in signupframe
+
+        #Changing frame from signup to login frame
+
+3.def change_to_signup_frame(self):
+
+   This method will be called when clicking signup button in loginframe
+
+        #Changing frame from login to signup frame
+
+4.def Back_to_login_frame():
+
+    This method will be called when clicking the "logout" button dashboard frame
+
+5.def Validate_user_details(self):
+
+        validate user details from the database if correct it will navigate the user t0 dashboard frame
+
+6.def add_items()
+
+        self.float1----> it contains label and widgets for adding new details of data
+
+        self.label10---->Add_name_label
+        self.labe;11---->item name
+        self.label12---->stocks
+        self.label13---->quantity
+        self.label14---->category
+        self.combobox1--->category drop down list
+
+        self.btn2---will call the add_to_stock method that added the data in the backend
+
+7.def update_stock_frame()
+
+        it contains the label and widgets updating and deleting the details
+
+        self.frame3--->update/details frame 
+
+        self.combobox2--->category dropdown list
+
+        self.tree1--->create table view for details of the stocks available
+
+        self.btn3---->selecting the data from the table tree view in the automatic fetching of details in entry boxes in frame 4
+
+        self.frame4--->containg item_name,stock_price,quantity labels and widgets
+
+        self.btn4--->UPDATE button frame 4--->it will call the update_stock method()
+
+        self.btn5--->DELETE button in frame 4--->it will call the delete_details method()
+
+8.def delete_stock()
+
+    it will be callled when we click the delete button update/delete button
+
+9.def reset_details button():
+       
+    it will clear the selected data in the entry boxes()
+
+
+10.def help():
+
+   contains developer details and code explanation link
+
