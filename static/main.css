@@ -1,0 +1,12 @@
+/* custom.css */
+
+.custom-card {
+    font-size: 14px; /* Adjust the font size for the card as needed */
+    padding: 15px; /* Adjust the padding for the card as needed */
+}
+
+.custom-table th,
+.custom-table td {
+    font-size: 12px; /* Adjust the font size for the table cells as needed */
+    padding: 8px; /* Adjust the padding for the table cells as needed */
+}
