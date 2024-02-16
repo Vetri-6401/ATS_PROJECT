@@ -1,0 +1,106 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-5" style="font-size: 14px;"> <h5>OFFER DETAILS</h5>
+            <hr style="height: 8px">
+            <div class="card card-body" style="font-size: 14px;">
+                <a class="btn btn-primary btn-sm btn-block"href="{% url 'hire' %}">Click here to update on offers</a>
+                <table class="table table-sm" id="offerTable">
+                    <tr>
+                        <!-- You can add headers here if needed -->
+                        <th>APPLICANT</th>
+                        <th>POSITION</th>
+                        <th>STATUS</th>
+                        <th>UPDATE</th>
+                        <th>REMOVE</th>
+                        
+                    </tr>
+                    {% for ans in  offer_accepted %}
+                        <tr>
+                            <td>{{ ans.name }}</td>
+                            <td>{{ans.position}}</td>
+                            <td>{{ans.offers}}</td>
+                            <td><a class="btn btn-sm btn-info " href="{% url 'update_hire' ans.id %}">UPDATE</a></td>
+                            <td><a class="btn btn-sm btn-danger " href="{% url 'delete_hire' ans.id %}">REMOVE</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <a href="#" id="downloadExcelOffer">Extract Excel</a>
+                <script>
+                    document.getElementById('downloadExcelOffer').addEventListener('click', function () {
+                        var csv = [];
+                        var rows = document.querySelectorAll('#offerTable tr');
+                        for (var i = 0; i < rows.length; i++) {
+                            var row = [], cols = rows[i].querySelectorAll('td, th');
+                            for (var j = 0; j < cols.length; j++)
+                                row.push(cols[j].innerText);
+                            csv.push(row.join(','));
+                        }
+                        var blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = 'output_offer.csv';
+                        link.click();
+                    });
+                </script>
+            </div>
+        </div>
+        <!-- Right Column - Latest Interviews -->
+        <div class="col-md-7" style="font-size: 14px;"> <h5>RECENT RECRUITMENT STATUS</h5>
+            
+            <hr style="height: 8px;">
+            <div class="card card-body" style="font-size: 14px;">
+                <!-- Button to schedule interviews -->
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'schedule' %}">click here for interview updates</a>
+                
+                <!-- Table to display latest interviews information -->
+                <table class="table table-sm" id="interviewTable">
+                    <tr>
+                        <!-- You can add headers here if needed -->
+                        <th>APPLICANT</th>
+                        <th>DATE</th>
+                        <th>STATUS</th>
+                        <th>INTERVIEWER</th>
+                        <th>UPDATE</th>
+                        <th>REMOVE</th>
+                        
+                    </tr>
+                    {% for orders in order %}
+                    <tr>
+                        <td>{{ orders.name }}</td>
+                        <td>{{ orders.interview_date|date:"M. j .Y" }}</td>
+                        <td>
+                            <span>{{ orders.get_interview_status_display }}</span>
+                        </td>
+                        <td>{{ orders.interviewer }}</td>
+                        <td><a class="btn btn-sm btn-info " href="{% url 'updateinterviews' orders.id %}">UPDATE</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'deleteinterview' orders.id %}">REMOVE</a></td>
+                        
+                    </tr>
+                        {% endfor %}
+                    
+                </table>
+                <a href="#" id="downloadExcelInterview">Extract Excel</a>
+                <script>
+                    document.getElementById('downloadExcelInterview').addEventListener('click', function () {
+                        var csv = [];
+                        var rows = document.querySelectorAll('#interviewTable tr');
+                        for (var i = 0; i < rows.length; i++) {
+                            var row = [], cols = rows[i].querySelectorAll('td, th');
+                            for (var j = 0; j < cols.length; j++)
+                                row.push(cols[j].innerText);
+                            csv.push(row.join(','));
+                        }
+                        var blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(blob);
+                        link.download = 'output_interview.csv';
+                        link.click();
+                    });
+                </script>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

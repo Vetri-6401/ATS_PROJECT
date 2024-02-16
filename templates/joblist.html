@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+
+<head>
+    <title>JOB OPENINGS </title>
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            background-color: #C67390 ;
+        }
+
+        h2 {
+            color: #232729;
+            text-align: center; /* Center align the title */
+        }
+
+        form {
+            background-color: #bfddf7;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="file"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            background-color: #ffffff; /* Set background color to white */
+        }
+
+        input[type="submit"] {
+            background-color: #1a73e8;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>JOB OPENINGS </h2>
+
+    <form action="/apply" method="POST" style="font-size: 14px;">
+
+        <label for="position">Role:</label>
+        <select id="position" name="position" required>
+            <option value="">Select Position</option>
+            <option value="Front-end developer">Front-end developer</option>
+            <option value="Back-end developer">Back-end developer</option>
+            <option value="Fullstock developer">Fullstock developer</option>
+            <option value="SQL developer">SQL developer</option>
+            <option value="HR tarinee">HR trainee</option>
+        </select>
+
+        <label for="Vacancies">Vacancies:</label>
+        <input type="text" id="Vacancies" name="Vacancies" required>
+
+        <label for="email">Locations:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="phone">Experience :</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="resume">skills:</label>
+        <input type="text" id="resume" name="resume">
+
+        <input type="submit" value="ADD OPENINGS">
+        <input type="submit" value="UPDATE">
+        <input type="submit" value="DELETE">
+        
+
+    </form>
+</body>
+
+</html>
