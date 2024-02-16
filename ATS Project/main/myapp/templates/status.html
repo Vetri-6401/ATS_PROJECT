@@ -1,0 +1,49 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" >
+            <div class="card text-center text-white bg-primary mb-3" id="open positions">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size: 15px;">Total Applicants</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ total_applicants }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center text-white bg-success mb-3" id="offers-made">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size: 15px;">Offers made</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{offers_made}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center text-white bg-warning mb-3" id="Action-pending">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size: 15px;">Offers Accpeted</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{offer_accepted_count}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center text-white bg-danger mb-3" id="Action-pending">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size: 15px;">Offers Rejected</h5>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{offer_rejected}}</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
