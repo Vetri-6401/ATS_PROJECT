@@ -1,20 +1,27 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.firefox.service import Service
-import time
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
-driver=webdriver.Chrome()
-
+# Set up Chrome WebDriver
+driver = webdriver.Chrome()
 driver.get("https://accounts.google.com/")
-wait=WebDriverWait(driver,timeout=10)
 
-time.sleep(4)
-driver.find_element(by="id",value="identifierId").send_keys("vetri.c641@gmail.com")
-time.sleep(5)
-driver.find_element(by="id",value="identifierNext").click()
-time.sleep(5)
-driver.find_element(by="name",value="password").send_keys("Vetri@01")
-time.sleep(5)
-driver.find_element(by="id",value="passwordNext").click()
-time.sleep(3)
+# Set up WebDriverWait
+wait = WebDriverWait(driver, 10)
+
+# Enter email
+email_input = wait.until(EC.visibility_of_element_located((By.ID, "identifierId")))
+email_input.send_keys("vetri.c641@gmail.com")
+driver.find_element(By.ID, "identifierNext").click()
+
+# Enter password
+password_input = wait.until(EC.visibility_of_element_located((By.NAME, "password")))
+password_input.send_keys("Vetri@01")
+driver.find_element(By.ID, "passwordNext").click()
+
+# Wait for login
+wait.until(EC.url_contains("myaccount.google.com"))
+
+# Close the browser
+driver.quit()
