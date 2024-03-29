@@ -13,6 +13,8 @@ import reversegeo as loc
 import os
 from bs4 import BeautifulSoup
 
+
+
 def get_current_location():
 
     options = webdriver.ChromeOptions()
@@ -31,6 +33,7 @@ def get_current_location():
         options=options,
         
     )
+
     
     wait = WebDriverWait(driver, timeout=5)
 
