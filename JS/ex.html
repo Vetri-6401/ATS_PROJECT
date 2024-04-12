@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="one"><br><br>
+    <input id="two"><br>
+    <button onclick="add()"> Add</button>
+    
+    <p >Result </p>
+    <p id="result">0</p>
+   
+</body>
+</html>
+<script>
+    var a=document.getElementById("one")
+    var b=document.getElementById("two")
+
+    function add(){
+
+        var a1=Number(a.value)
+        var b1=Number(b.value)
+        
+        var total=a1+b1
+
+        var x=document.getElementById('result')
+        x.textContent=total
+
+        
+    }
+   
+</script>

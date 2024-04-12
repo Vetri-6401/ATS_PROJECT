@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="TextInput" onkeyup="update()">
+    <p id="result"></p>
+
+</html>
+<script>
+    var textinput=document.getElementById("TextInput")
+    var result=document.getElementById("result")
+
+    function update(){
+        result.textContent=textinput.value
+    }
+</script>
