@@ -15,14 +15,38 @@ body,html{
 	border-radius: 15px !important;
 	background-color: rgba(0,0,0,0.4) !important;
 }
+
 .contacts_body{
 	padding:  0.75rem 0 !important;
 	overflow-y: auto;
 	white-space: nowrap;
 }
+
 .msg_card_body{
 	overflow-y: auto;
 }
+#messageFormeight #rest-btn,
+#messageFormeight #reg-btn {
+    padding: 7px 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: #007bff;
+    border-radius: 5px;
+}
+
+#messageFormeight #rest-btn:hover,
+#messageFormeight #reg-btn:hover {
+    background-color: #0056b3;
+}
+
 .card-header{
 	border-radius: 15px 15px 0 0 !important;
 	border-bottom: 0 !important;
