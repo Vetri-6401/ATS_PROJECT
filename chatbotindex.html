@@ -31,8 +31,11 @@
 							</div>
 						</div>
 						<div id="messageFormeight" class="card-body msg_card_body">
-							
-							
+							<div class="floating-buttons">
+								<a href="" id="rest-btn" class="action-button">reset my Citrix Password</a>
+								<a href="" id="reg-btn" class="action-button">register my details</a>
+							</div>
+								
 						</div>
 						<div class="card-footer">
 							<form id="messageArea" class="input-group">
@@ -48,6 +51,11 @@
 		</div>
 		
 		<script>
+			function scrollToBottom() {
+				var chatMessages = document.getElementById("messageFormeight");
+				chatMessages.scrollTop = chatMessages.scrollHeight;
+			}
+		
             <!-- This ensures that the code inside the function is executed only after the DOM has fully loaded. -->
 			$(document).ready(function() {
 				$("#messageArea").on("submit", function(event) {
@@ -57,7 +65,7 @@
 					const str_time = hour+":"+minute; 
 					var rawText = $("#text").val();
 
-					var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">'+ str_time + '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg"></div></div>';
+					var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">'+ str_time + '</span></div><div class="img_cont_msg"><img src="https://imagedelivery.net/5MYSbk45M80qAwecrlKzdQ/dee97162-41b2-4e11-1d58-1d86f8ac3a00/thumbnail?v=2024040511" class="rounded-circle user_img_msg"></div></div>';
 					
 					$("#text").val("");
 					$("#messageFormeight").append(userHtml);
@@ -72,9 +80,26 @@
 					}).done(function(data) {
 						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-hzbDNq9J26suvYM280a4Jp0NljlizO2YwOaEo5dj0w&s" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
 						$("#messageFormeight").append($.parseHTML(botHtml));
+						scrollToBottom();
 					});
 					event.preventDefault();
 				});
+			});
+			$(".action-button").on("click", function(event) {
+
+				event.preventDefault();
+
+				const date = new Date();
+				const hour = date.getHours();
+				const minute = date.getMinutes();
+				const str_time = hour + ":" + minute;
+				var ButtonText = $(this).text();
+			
+				var UserHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + ButtonText + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg"><img src="https://imagedelivery.net/5MYSbk45M80qAwecrlKzdQ/dee97162-41b2-4e11-1d58-1d86f8ac3a00/thumbnail?v=2024040511" class="rounded-circle user_img_msg"></div></div>';
+			
+				$(".action-button").val(""); 
+				$("#messageFormeight").append(UserHtml);
+				scrollToBottom();	
 			});
 		</script>
         
