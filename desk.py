@@ -232,7 +232,7 @@ class DesktopApp():
                 print("connection sucessful")
 
                 
-                conn.search(search_base='ou=BOT-TEST,dc=newgenkw,dc=local',
+                conn.search(search_base='ou=,dc=,dc=',
                         search_filter='(objectClass=user)',
                         search_scope=SUBTREE, 
                         attributes=['cn','sAMAccountName','mail'])
@@ -262,10 +262,10 @@ class DesktopApp():
         try:
         # Define the AD server
             user_dn=f'CN={dn},OU=BOT-TEST,DC=newgenkw,DC=local'
-            server = Server("ldaps://10.4.10.10", get_info=ALL)
+            server = Server("", get_info=ALL)
 
         # Establish connection with NTLM authentication and password as bytes
-            conn = Connection(server, user="newgenkw.local\\botadmin", password="Welcome@123", authentication=NTLM)
+            conn = Connection(server, user="", password="", authentication=NTLM)
 
         # Bind and print the result
             if conn.bind():
