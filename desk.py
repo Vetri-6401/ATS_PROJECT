@@ -222,10 +222,10 @@ class DesktopApp():
 
         try:
         # Define the AD server
-            server = Server("ldaps://10.4.10.10", get_info=ALL)
+            server = Server("", get_info=ALL)
 
         # Establish connection with NTLM authentication and password as bytes
-            conn = Connection(server, user="newgenkw.local\\botadmin", password="Welcome@123", authentication=NTLM)
+            conn = Connection(server, user="", password="Welcome@123", authentication=NTLM)
 
             # Bind and print the result
             if conn.bind():
