@@ -1,4 +1,32 @@
-nput class="input--style-4" type="date" name="date2" id="date2" required>
+{% extends "home.html" %}
+{% load static %}
+
+{% block content %}
+
+<body>
+<main id="main" class="main">
+  <h2 style="color:#fff;font-family:verdana;position:absolute;top:125px;right:320px">OPEN/CLOSE TICKETS </h2>
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+
+                    <form method="POST" action="{% url 'base6' %}">
+                      {% csrf_token %}
+
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label" >From Date</label>
+                                    <input class="input--style-4" type="date" name="date1" id="date1" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">To Date</label>
+                                    <input class="input--style-4" type="date" name="date2" id="date2" required>
                                 </div>
                             </div>
                         </div>
@@ -58,3 +86,5 @@ nput class="input--style-4" type="date" name="date2" id="date2" required>
 {% endblock %}
 
 </html>
+
+
