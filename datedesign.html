@@ -1,0 +1,60 @@
+nput class="input--style-4" type="date" name="date2" id="date2" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <label class="label">Customer Name</label>
+
+<!--                                <input class="input&#45;&#45;style-4">-->
+
+                                <select class="form-control" name='full_customer_name' id="full_customer_name" >
+                                        <option value=''></option>
+                                        {% for i in customers %}
+                                            {% for j in i %}
+
+                                                <option value='{{j}}'>{{ j }}</option>
+                                            {% endfor %}
+                                        {% endfor %}
+
+                                    </select>
+
+<!--                                <div class="select-dropdown"></div>-->
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                            <label class="label2" style="color: #fff;font-size:20px;" >Ticket Type</label>
+
+<!--                                <input class="input&#45;&#45;style-4">-->
+
+                           <select class="form-control1" style="font-size: 16px;" name='ticket_type' id='ticket_type' required>
+                            <option class="form-control1" value="OPEN">OPEN TICKETS</option>
+                            <option class="form-control1" value="CLOSED">CLOSED TICKETS</option>
+                            </select> </div></div>
+                        <div class="p-t-15">
+<!--                            <input type="submit" name="submit" id="submit" value='GET REPORT' onClick="return validate();"/>-->
+                            <center><button class="btn btn--radius-2 btn--blue" type="submit">GET DATA</button></center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+  </main>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+
+{% endblock %}
+
+</html>
