@@ -98,7 +98,7 @@ wifi_access_points = [
 ]
 
 # Your Google API key
-api_key = 'AIzaSyBPSNiICcvL-5_JwzKkgf174miqzs2lySw'
+api_key = ''
 
 # Fetch location
 location_data = get_location(api_key, wifi_access_points)
