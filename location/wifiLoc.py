@@ -132,7 +132,7 @@ def get_location(api_key, wifi_access_points):
 # Fetch location
 
 if __name__ == "__main__":
-    api_key = 'AIzaSyBPSNiICcvL-5_JwzKkgf174miqzs2lySw'
+    api_key = 'YOUR API KEY'
     wifi_info = get_wifi_info()
     if wifi_info:
         print(json.dumps(wifi_info, indent=2))
