@@ -26,7 +26,7 @@ def get_location_info(lat, lon, api_key):
 # Example usage
 latitude = 13.0628743
 longitude = 80.1692679
-api_key = 'b32azy02aHQqZp1EYTbjnGF6vaZFmcK1h72yAw0h'  # Replace 'XXX' with your actual API key
+api_key = ''  # Replace 'XXX' with your actual API key
 
 location_info = get_location_info(latitude, longitude, api_key)
 print("Location Info:", location_info)
