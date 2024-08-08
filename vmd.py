@@ -1,8 +1,8 @@
 import paramiko
 
-hostname = '172.16.100.26'
-username = 'Fnet'
-pwd = 'Welcome@123'
+hostname = ''
+username = '
+pwd = ''
 
 ssh_client = paramiko.SSHClient()
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
