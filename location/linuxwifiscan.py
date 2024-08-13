@@ -21,10 +21,10 @@ def scan_networks():
         if mac_match:
             if current_network:
                 networks.append(current_network)
-            current_network = {'MAC': mac_match.group(1)}
+            current_network = {'macAddress': mac_match.group(1)}
         
         if signal_match:
-            current_network['Signal'] = signal_match.group(1)
+            current_network['signalStrength'] = signal_match.group(1)
     
     if current_network:
         networks.append(current_network)
