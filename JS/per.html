@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Permissions Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+
+        .frame {
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        li.selected {
+            background-color: #d0f0c0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="frame" id="allUsersFrame">
+            <h2>All Users</h2>
+            <ul id="allUsersList">
+                <!-- User list items will be injected here -->
+            </ul>
+            <button onclick="assignPermissions()">Assign to Permissions</button>
+        </div>
+        <div class="frame" id="permissionsFrame">
+            <h2>Permissions</h2>
+            <ul id="permissionsList">
+                <!-- Permission list items will be injected here -->
+            </ul>
+            <button onclick="removePermissions()">Remove from Permissions</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Example user data
+            const allUsers = [
+                { id: 1, name: 'Alice' },
+                { id: 2, name: 'Bob' },
+                { id: 3, name: 'Charlie' },
+                { id: 4, name: 'Diana' }
+            ];
+
+            const allUsersList = document.getElementById('allUsersList');
+            const permissionsList = document.getElementById('permissionsList');
+
+            // Populate the All Users frame
+            allUsers.forEach(user => {
+                const li = document.createElement('li');
+                li.textContent = user.name;
+                li.dataset.id = user.id;
+                li.addEventListener('click', () => toggleSelection(li));
+                allUsersList.appendChild(li);
+            });
+        });
+
+        function toggleSelection(li) {
+            li.classList.toggle('selected');
+        }
+
+        function assignPermissions() {
+            const selectedUsers = document.querySelectorAll('#allUsersList li.selected');
+            const permissionsList = document.getElementById('permissionsList');
+
+            selectedUsers.forEach(user => {
+                const newLi = user.cloneNode(true);
+                newLi.classList.remove('selected');
+                newLi.removeEventListener('click', () => toggleSelection(newLi));
+                newLi.addEventListener('click', () => removeUserFromPermissions(newLi));
+                permissionsList.appendChild(newLi);
+                user.remove();
+            });
+        }
+
+        function removePermissions() {
+            const selectedPermissions = document.querySelectorAll('#permissionsList li.selected');
+            const allUsersList = document.getElementById('allUsersList');
+
+            selectedPermissions.forEach(user => {
+                const newLi = user.cloneNode(true);
+                newLi.classList.remove('selected');
+                newLi.removeEventListener('click', () => removeUserFromPermissions(newLi));
+                newLi.addEventListener('click', () => toggleSelection(newLi));
+                allUsersList.appendChild(newLi);
+                user.remove();
+            });
+        }
+
+        function removeUserFromPermissions(userLi) {
+            userLi.remove();
+        }
+    </script>
+</body>
+</html>
