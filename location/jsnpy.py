@@ -1,54 +1,52 @@
 import subprocess
-import re
-import platform
+import json
 
-
-def get_wifi_info():
+def scan_wifi():
     try:
-        wifi_info = []
+        # Run nmcli command to scan for networks
+        result = subprocess.check_output(['nmcli', '-f', 'SSID,BSSID,SIGNAL', 'device', 'wifi', 'list'], stderr=subprocess.STDOUT, text=True)
+    except subprocess.CalledProcessError as e:
+        print("Error running nmcli:", e.output)
+        return []
 
-        if platform.system() == 'Windows':
-            result = subprocess.run(['netsh', 'wlan', 'show', 'network', 'mode=Bssid'], capture_output=True, text=True)
-            output = result.stdout
+    # Parse the output to extract network details
+    networks = []
+    lines = result.strip().split('\n')[1:]  # Skip the header line
+    
+    for line in lines:
+        parts = line.split()
+        if len(parts) >= 3:
+            ssid = ' '.join(parts[:-2])
+            mac_address = parts[-2]
+            signal_strength = (-int(parts[-1]))  # Signal strength is already in dBm
+            networks.append({
+                'macAddress': mac_address,
+                'signalStrength': signal_strength
+            })
+    
+    return networks
+import requests
+def get_location(api_key, wifi_access_points):
+    url = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + api_key
+    payload = {"wifiAccessPoints": wifi_access_points}
+    
 
-            mac_addresses = re.findall(r'^\s+BSSID\s+\d+\s+:\s+([0-9A-Fa-f:]{17})', output, re.MULTILINE)
-            signal_strengths = re.findall(r'^\s+Signal\s+:\s+(\d+)%', output, re.MULTILINE)
-
-            if len(mac_addresses) != len(signal_strengths):
-                raise ValueError("Mismatch between MAC addresses and signal strengths count")
-
-            for i in range(len(mac_addresses)):
-                signal_strength = -100 + (int(signal_strengths[i]) * 0.6)
-                wifi_info.append({
-                    'macAddress': mac_addresses[i],
-                    'signalStrength': signal_strength
-                })
-
-        else:
-            try:
-                result = subprocess.run(['nmcli', '-f', 'SSID,CHAN,RATE,SIGNAL', 'device', 'wifi', 'list'], capture_output=True, text=True, check=True)
-            except subprocess.CalledProcessError as e:
-                print("Error running nmcli command:", e)
-                return []
-
-            networks = []
-            lines = result.stdout.split('\n')[1:]  # Skip header line
-            for line in lines:
-                if line.strip():
-                    parts = re.split(r'\s{2,}', line.strip())
-                    if len(parts) >= 4:
-                        ssid = parts[0]
-                        signal_strength = float(parts[3])
-                        networks.append({
-                            'ssid': ssid,
-                            'signalStrength': signal_strength
-                        })
-
-            wifi_info = networks
-        
-        print(wifi_info)
-        return wifi_info
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    response = requests.post(url, json=payload)
+    if response.status_code==200:
+        location_data=response.json()
+        return location_data
+    else:
+        print(response.status_code)
+        print(response.text)
         return None
+if __name__ == "__main__":
+    api_key = 'AIzaSyBPSNiICcvL-5_JwzKkgf174miqzs2lySw'
+    wifi_info = scan_wifi()
+    if wifi_info:
+        print("Scanned Wi-Fi Networks:")
+       
+
+    location_data = get_location(api_key, wifi_info)
+    if location_data:
+        print("Location Data:")
+        print(json.dumps(location_data, indent=2))
