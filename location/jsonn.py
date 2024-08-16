@@ -2,7 +2,8 @@ import subprocess
 import re
 import time
 import platform
-
+import json
+import requests
 
 def get_wifi_info():
     try:
@@ -25,7 +26,7 @@ def get_wifi_info():
                     'signalStrength': signal_strength
                 })
 
-        else:
+        elif platform.system()=='Linux':
             try:
                 result = subprocess.run(['sudo', 'iwlist', 'scan'], capture_output=True, text=True, check=True)
             except subprocess.CalledProcessError as e:
@@ -61,3 +62,31 @@ def get_wifi_info():
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
+    
+def get_location(api_key, wifi_access_points):
+    url = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + api_key
+    payload = {"wifiAccessPoints": wifi_access_points}
+    
+
+    response = requests.post(url, json=payload)
+    if response.status_code==200:
+        location_data=response.json()
+        return location_data
+    else:
+        print(response.status_code)
+        print(response.text)
+        return None
+
+    return response.json()
+
+if __name__ == "__main__":
+    api_key = ''
+    wifi_info = get_wifi_info()
+    if wifi_info:
+        print("Scanned Wi-Fi Networks:")
+        print(json.dumps(wifi_info, indent=2))
+
+    location_data = get_location(api_key, wifi_info)
+    if location_data:
+        print("Location Data:")
+        print(json.dumps(location_data, indent=2))
