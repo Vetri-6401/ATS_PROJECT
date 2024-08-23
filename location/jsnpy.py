@@ -40,7 +40,7 @@ def get_location(api_key, wifi_access_points):
         print(response.text)
         return None
 if __name__ == "__main__":
-    api_key = 'AIzaSyBPSNiICcvL-5_JwzKkgf174miqzs2lySw'
+    api_key = 'YOUR API KEY'
     wifi_info = scan_wifi()
     if wifi_info:
         print("Scanned Wi-Fi Networks:")
