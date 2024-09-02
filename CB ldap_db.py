@@ -6,7 +6,7 @@ def ldap_reset_details(emp_id,email_id,status):
     try:
         connection = mysql.connector.connect(
             user='chat',
-            password='chatindia',
+            password='',
             host='',
             port='3306',
             database='chatbot'  # Specify your database name here
