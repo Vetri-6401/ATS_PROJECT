@@ -12,7 +12,7 @@ def generate_otp(user_mail):
         print(user_mail)
 
         email_content=f'OTP for reset your citrix password : {otp} '
-        sender = 'vetrivel.c@futurenet.in'
+        sender = ''
         recipients = user_mail
         subject = 'OTP for reset your citrix password'
 
@@ -23,10 +23,10 @@ def generate_otp(user_mail):
         msg['To'] = recipients
 
         # Connect to SMTP server and send the email
-        smtp_server = 'webmail.futurenet.in'
+        smtp_server = ''
         smtp_port = 587
         smtp_username = sender
-        smtp_password = 'Vetri@6401'
+        smtp_password = ''
         server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()
         server.login(smtp_username, smtp_password)
